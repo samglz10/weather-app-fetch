@@ -1,28 +1,26 @@
 require('dotenv').config();
-console.log('weather app')
 
 const BASE_URL='http://api.weatherapi.com/v1/'
 const API_KEY = process.env.API_KEY;
-const LOCATION = 'pawashingtonris'
+const LOCATION = 'washington'
 
 
-console.log(`${BASE_URL}forecast.json?key=${API_KEY}&q=${LOCATION}`)
+console.log(`${BASE_URL}current.json?key=${API_KEY}&q=${LOCATION}`)
 
 function fetchAPI(){
-    fetch(`${BASE_URL}current/json?key=${API_KEY}`, {
+    fetch(`${BASE_URL}current.json?key=${API_KEY}&q=${LOCATION}`, {
         method: 'GET',
     })
     .then((response)=>{
-        response.json()
+        return response.json();
+
     })
     .then((data)=>{
-        console.log(`this is the ${data}`)
+        console.log(data)
     })
     .catch((error)=>{
-        throw new Error("error")
-
+        throw new Error(console.log(error))
     })
-
 }
 
 fetchAPI();
